@@ -12,7 +12,20 @@
           "package_name": "com.app.veronicalens_api"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "228969276268-69rld7us432om1ote81erq5trja3vu1a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.veronicalens_api",
+            "certificate_hash": "a8422b92ed0cee1debcecff193349a2819569979"
+          }
+        },
+        {
+          "client_id": "228969276268-ot3apvv5r8hm7a7klvd3p0h70djncpi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyALTa3_92LP0QEDI_ed_MGp7AM-BB6zXfs"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228969276268-ot3apvv5r8hm7a7klvd3p0h70djncpi6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "228969276268-ps8ceuome8ngmtifod03slenvrio8t6e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.veronicalensApp"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +56,12 @@
           "package_name": "com.example.veronicalens_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "228969276268-ot3apvv5r8hm7a7klvd3p0h70djncpi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyALTa3_92LP0QEDI_ed_MGp7AM-BB6zXfs"
@@ -39,7 +69,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228969276268-ot3apvv5r8hm7a7klvd3p0h70djncpi6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "228969276268-ps8ceuome8ngmtifod03slenvrio8t6e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.veronicalensApp"
+              }
+            }
+          ]
         }
       }
     }

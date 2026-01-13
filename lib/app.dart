@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'test_auth_page.dart';
+import 'package:provider/provider.dart';
+
+import 'viewmodels/auth_view_model.dart';
+import 'views/login_page.dart';
+import 'views/home/home_page.dart';
+import 'auth_gate.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,12 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Auth Test',
+      title: 'Veronica Lens',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.deepPurple,
       ),
-      home: const TestAuthPage(),
+      home: const AuthGate(),
     );
   }
 }

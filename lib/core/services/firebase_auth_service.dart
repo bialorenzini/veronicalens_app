@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   User? get currentUser => _auth.currentUser;
 
@@ -17,7 +19,7 @@ class FirebaseAuthService {
     return result.user;
   }
 
-  // CADASTRO
+  // CADASTRO EMAIL
   Future<User?> registerWithEmail({
     required String email,
     required String password,
@@ -29,8 +31,31 @@ class FirebaseAuthService {
     return result.user;
   }
 
-  // LOGOUT
+  // LOGIN GOOGLE
+  Future<User?> signInWithGoogle() async {
+    final googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) return null; // cancelado
+
+    final googleAuth = await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    final result = await _auth.signInWithCredential(credential);
+    return result.user;
+  }
+
+  // LOGIN ANÔNIMO
+  Future<User?> signInAnonymously() async {
+    final result = await _auth.signInAnonymously();
+    return result.user;
+  }
+
+  // LOGOUT (importante!)
   Future<void> signOut() async {
+    await _googleSignIn.signOut(); // evita login automático
     await _auth.signOut();
   }
 }
