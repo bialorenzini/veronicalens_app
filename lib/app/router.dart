@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'auth_notifier.dart';
 import '../features/auth/views/login_page.dart';
+import '../features/auth/views/register_page.dart';
 import '../features/home/views/home_page.dart';
 
 GoRouter createRouter(AuthNotifier authNotifier) {
@@ -12,13 +13,14 @@ GoRouter createRouter(AuthNotifier authNotifier) {
 
     redirect: (context, state) {
       final loggedIn = authNotifier.isLoggedIn;
-      final isLoggingIn = state.matchedLocation == '/login';
+      final isLogin = state.matchedLocation == '/login';
+      final isRegister = state.matchedLocation == '/register';
 
-      if (!loggedIn && !isLoggingIn) {
+      if (!loggedIn && !(isLogin || isRegister)) {
         return '/login';
       }
 
-      if (loggedIn && isLoggingIn) {
+      if (loggedIn && (isLogin || isRegister)) {
         return '/home';
       }
 
@@ -29,6 +31,10 @@ GoRouter createRouter(AuthNotifier authNotifier) {
       GoRoute(
         path: '/login',
         builder: (context, state) => const LoginPage(),
+      ),
+      GoRoute(
+        path: '/register',
+        builder: (context, state) => const RegisterPage(),
       ),
       GoRoute(
         path: '/home',

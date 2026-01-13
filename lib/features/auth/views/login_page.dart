@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 import '../viewmodels/auth_view_model.dart';
+import '../../../core/components/app_input.dart';
+import '../../../core/components/app_button.dart';
+import '../../../core/components/app_title.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,13 +14,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -25,95 +29,48 @@ class _LoginPageState extends State<LoginPage> {
     final authVM = context.watch<AuthViewModel>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-        centerTitle: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 32),
+            const SizedBox(height: 60),
+            const AppTitle(text: 'DE VOLTA A TRIPULAÇÃO!', fontSize: 28),
+            const SizedBox(height: 40),
 
-            // EMAIL
-            TextField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
-            ),
-
+            AppInput(label: 'Email', controller: emailController),
             const SizedBox(height: 16),
-
-            // SENHA
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Senha',
-                border: OutlineInputBorder(),
-              ),
-            ),
-
+            AppInput(label: 'Senha', controller: passwordController, obscure: true),
             const SizedBox(height: 24),
 
-            // ERRO
             if (authVM.errorMessage != null)
-              Text(
-                authVM.errorMessage!,
-                style: const TextStyle(color: Colors.red),
-                textAlign: TextAlign.center,
-              ),
+              Text(authVM.errorMessage!, style: const TextStyle(color: Colors.red), textAlign: TextAlign.center),
 
             const SizedBox(height: 12),
 
-            // LOADING
-            if (authVM.isLoading)
-              const Center(child: CircularProgressIndicator()),
+            AppButton(
+              label: 'LOGIN',
+              loading: authVM.isLoading,
+              onPressed: () => authVM.loginWithEmail(emailController.text.trim(), passwordController.text.trim()),
+            ),
 
-            if (!authVM.isLoading) ...[
-              // LOGIN EMAIL
-              ElevatedButton(
-                onPressed: () {
-                  authVM.loginWithEmail(
-                    _emailController.text.trim(),
-                    _passwordController.text.trim(),
-                  );
-                },
-                child: const Text('Entrar'),
-              ),
+            const SizedBox(height: 12),
 
-              const SizedBox(height: 12),
-
-              // LOGIN GOOGLE
-              OutlinedButton.icon(
-                onPressed: authVM.loginWithGoogle,
-                icon: const Icon(Icons.g_mobiledata),
-                label: const Text('Entrar com Google'),
-              ),
-
-              const SizedBox(height: 12),
-
-              // LOGIN ANÔNIMO
-              TextButton(
-                onPressed: authVM.loginAnonymously,
-                child: const Text('Entrar como convidado'),
-              ),
-            ],
+            OutlinedButton.icon(
+              onPressed: authVM.loginWithGoogle,
+              icon: const Icon(Icons.g_mobiledata),
+              label: const Text('GOOGLE'),
+            ),
 
             const Spacer(),
 
-            // LINK PARA CADASTRO
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Não tem conta?'),
+                const Text('Ainda não tem uma conta?'),
                 TextButton(
                   onPressed: () {
-                    // futuramente: Navigator.push para RegisterPage
+                    context.push('/register');
                   },
                   child: const Text('Cadastre-se'),
                 ),
