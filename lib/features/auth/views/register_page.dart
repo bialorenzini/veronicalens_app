@@ -68,8 +68,6 @@ class _RegisterPageState extends State<RegisterPage> {
               child: const Text('Entrar como convidado'),
             ),
 
-            const Spacer(),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

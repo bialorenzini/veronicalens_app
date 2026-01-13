@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../../core/components/app_nav_bar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class CameraPage extends StatelessWidget {
+  const CameraPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(child: Text('HOME')),
+      body: const Center(child: Text('Camera')),
       bottomNavigationBar: const AppNavBar(
-        currentIndex: 0, // HOME
+        currentIndex: 2, // HOME
       ),
     );
   }

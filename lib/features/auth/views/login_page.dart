@@ -62,8 +62,6 @@ class _LoginPageState extends State<LoginPage> {
               label: const Text('GOOGLE'),
             ),
 
-            const Spacer(),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
