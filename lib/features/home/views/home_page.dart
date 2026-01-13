@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../viewmodels/auth_view_model.dart';
+import '../../auth/viewmodels/auth_view_model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
